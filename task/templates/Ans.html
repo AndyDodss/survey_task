@@ -1,0 +1,57 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>index</title>
+    <link rel="stylesheet" href="{% static 'survey/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="cs.css">
+</head>
+<body>
+
+
+
+     <div class="container"><br>
+        <h2>Survey</h2>
+        <table class="table table">
+
+        <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>content</th>
+                    <th>Rate A</th>
+                    <th>Rate B</th>
+                    <th>Rate C</th>
+                    <th>Rate D</th>
+                    <th>Rate E</th>
+                </tr>
+            </thead>
+            <tbody>
+
+         {% for question in questions %}
+
+                    <tr>
+                    <form method="post" action="">
+                    <td>{{ question.name }}</td>
+                    <td>{{ question.content }}</td>
+                    <td> <input type="radio" name="question" value="value 1"></td>
+                    <td> <input type="radio" name="question" value="value 2"></td>
+                    <td> <input type="radio" name="question" value="value 3"></td>
+                    <td> <input type="radio" name="question" value="value 4"></td>
+                    <td> <input type="radio" name="question" value="value 5"></td>
+                   <td> <input class="btn btn-success active" type="submit" value="choose"></td>
+                    </form>
+                    </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+</body>
+</html>

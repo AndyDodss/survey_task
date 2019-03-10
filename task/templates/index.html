@@ -1,0 +1,48 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>index</title>
+    <link rel="stylesheet" href="{% static 'survey/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="cs.css">
+</head>
+<body>
+
+    <div class="container"><br>
+        <h2>Survey List</h2>
+        <hr>
+
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>content</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                {% for question in questions %}
+
+                    <tr>
+                    <td>{{ question.name }}</td>
+                    <td>{{ question.content }}</td>
+                 
+                    <td>
+                        <a class="btn btn-danger" href="/delete/{{ question.id }}">Delete</a>
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+        </table>
+        <a class="btn btn-primary" href="/add_question/">Add question</a>
+    </div>
+
+</body>
+</html>
