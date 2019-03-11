@@ -26,6 +26,18 @@ def test(request):
     return render(request ,'test.html',context)
 
 
+def testall(request):
+    
+    Answers=  Ans.objects.all()
+    
+    context = {
+            
+            'answers' : Answers
+          }
+    
+    return render(request,"testall.html",context)
+
+
 
 
 

@@ -10,7 +10,7 @@ urlpatterns = [
      path('login_check', views.login_check, name='login_check' ),
      path('answer',views.answer,name='answer'),
     path('ans', views.ans, name='ans' ),
-
+    path('testall', views.testall, name='test' ),
      path('test', views.test, name='test' ),
 
 

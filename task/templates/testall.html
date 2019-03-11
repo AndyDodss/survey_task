@@ -12,43 +12,48 @@
     <link rel="stylesheet" href="cs.css">
 </head>
 <body>
- <header>
-        <nav class="navbar navbar-light" style="background-color: #343a40;">
+    <header>
+        <nav class="navbar navbar-light" style="background-color: #181918;">
             <div class="container">
-               <h4 style="color:#fff; ">Welcome {{request.user.username}}</h4>
+               <h5 style>Welcome {{request.user.username}}</h5>
             </div>
 </nav>
     </header>
     <div class="container"><br>
-      <h2><a href="myadmin"><button type="button" class="btn btn-dark">Survey</button>
+        
+        <h2><a href="myadmin"><button type="button" class="btn btn-dark">Survey</button>
         <a href="test"><button type="button" class="btn btn-dark">Survey Details</button></a>
       <a href="testall"><button type="button" class="btn btn-dark">User Details</button></a>  </h2>
         <hr>
-        <table class="table table-dark">
+         <table class="table table-dark">
             <thead>
                 <tr>
+                  
                     <th>Title</th>
-                    <th>content</th>
+                    <th>Question</th>
+                    <th>User</th>
+                    <th>Rate of 5</th>
                    
                 </tr>
             </thead>
             <tbody>
-                {% for question in questions %}
+                {% for answer in answers %}
 
                     <tr>
-                    <td>{{ question.name }}</td>
-                    <td>{{ question.content }}</td>
+                   
+                    <td>{{ answer.Question_id }}</td>
+                    <td>{{ answer.Question_id.content }}</td>
+                    <td>{{ answer.user_id }}</td>
+                    <td>{{ answer.rate}}</td>
                  
-                    <td>
-                        <a class="btn btn-danger" href="/delete/{{ question.id }}">Delete</a>
-                    </td>
+                    
                 </tr>
 
                 {% endfor %}
 
             </tbody>
         </table>
-        <a class="btn btn-success" href="/add_question/">Add question</a>
+        
     </div>
 
 </body>
