@@ -15,10 +15,13 @@ def index(request):
     return render(request,'index.html' , context)
 
 def test(request):
-    Ansewers = Ans.objects.all()
+    questions=Ask.objects.all()
+    Answers=  Ans.objects.all()
+    
     context = {
-        'answers': Ansewers
-    }
+            'questions' : questions ,
+            'answers' : Answers
+          }
     
     return render(request ,'test.html',context)
 

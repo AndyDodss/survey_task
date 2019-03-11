@@ -25,36 +25,42 @@
         <h2><a href="myadmin"><button type="button" class="btn btn-dark">Survey</button></a> </h2>
         <hr>
 
-         <table class="table table-dark">
+         <table class="table" style="width: 800px; text-align: center;">
+              {% for question in questions %}
             <thead>
+
+
+
+           
                 <tr>
                   
-                    <th>Title</th>
-                    <th>Question</th>
-                    <th>User</th>
-                    <th>Rate of 5</th>
+                    <th colspan="2">{{ question.content }}</th>
+
                    
                 </tr>
             </thead>
             <tbody>
+
                 {% for answer in answers %}
+                   {% ifequal question.id answer.Question_id.id %}
 
                     <tr>
                    
-                    <td>{{ answer.Question_id }}</td>
-                    <td>{{ answer.Question_id.content }}</td>
-                    <td>{{ answer.user_id }}</td>
-                    <td>{{ answer.rate}}</td>
-                 
+                    <td style="text-align: center;">{{ answer.user_id.username}}</td>
+                    <td>{{ answer.rate }}</td>
                     
-                </tr>
+                   </tr>
+                    {% endifequal %}
 
                 {% endfor %}
 
             </tbody>
+            {%endfor%}
         </table>
         
     </div>
 
 </body>
 </html>
+
+
