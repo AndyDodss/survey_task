@@ -8,7 +8,7 @@ urlpatterns = [
     path('delete/<id>/', views.delete, name='delete' ),
     path('register', views.register, name='register' ),
      path('login_check', views.login_check, name='login_check' ),
-
+     path('answer',views.answer,name='answer'),
     path('ans', views.ans, name='ans' ),
 
 

@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="cs.css">
 </head>
 <body>
-
-{{request.user.username}}     <div class="container"><br>
+   <div class="container"><br>
         <h2>Survey</h2>
         <table class="table table">
 
@@ -31,26 +30,59 @@
             <tbody>
 
          {% for question in questions %}
+            {% for answer in answers %}
+            
+                {% if not  question.id == answer.Question_id %}
+                   {% if not user.id == answer.user_id %}
                 
 
                     <tr>
-                    <form method="post" action="">
+                    <form method="POST" action="answer">
+                        {%  csrf_token %}
+
                     <td>{{ question.name }}</td>
                     <td>{{ question.content }}</td>
-                    <td> <input type="radio" name="question" value="value 1"></td>
-                    <td> <input type="radio" name="question" value="value 2"></td>
-                    <td> <input type="radio" name="question" value="value 3"></td>
-                    <td> <input type="radio" name="question" value="value 4"></td>
-                    <td> <input type="radio" name="question" value="value 5"></td>
+                    <td> <input type="radio" name="rate" value="1"></td>
+                    <td> <input type="radio" name="rate" value="2"></td>
+                    <td> <input type="radio" name="rate" value="3"></td>
+                    <td> <input type="radio" name="rate" value="4"></td>
+                    <td> <input type="radio" name="rate" value="5"></td>
+                    <td> <input type="hidden" name="question_id" value="{{question.id}}"></td>
+                    <td> <input type="hidden" name="user_id" value="{{request.user.id}}"></td>
                    <td> <input class="btn btn-success active" type="submit" value="choose"></td>
                     </form>
                     </tr>
+         
+               
+                
+                    {%endif%}
+                {% else %}
+                    <tr>
+                    <form method="POST" action="answer">
+                        {%  csrf_token %}
 
-                {% endfor %}
+                    <td>{{ question.name }}</td>
+                    <td>{{ question.content }}</td>
+                    <td> <input type="radio" name="rate" value="1"></td>
+                    <td> <input type="radio" name="rate" value="2"></td>
+                    <td> <input type="radio" name="rate" value="3"></td>
+                    <td> <input type="radio" name="rate" value="4"></td>
+                    <td> <input type="radio" name="rate" value="5"></td>
+                    <td> <input type="hidden" name="question_id" value="{{question.id}}"></td>
+                    <td> <input type="hidden" name="user_id" value="{{request.user.id}}"></td>
+                    <td> <input class="btn btn-success active" type="submit" value="choose"></td>
+                    </form>
+                    </tr>
+                {% endif %}
+
+            {% endfor %}
+            {% endfor %}
+           
+
             </tbody>
         </table>
 
     </div>
-
+ 
 </body>
 </html>

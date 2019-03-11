@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect
-from . models import Ask
+from . models import Ask,Ans
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth import login,authenticate
+
 # Create your views here.
 def index(request):
     questions = Ask.objects.all()
@@ -11,6 +13,17 @@ def index(request):
         'questions': questions
     }
     return render(request,'index.html' , context)
+
+def ans(request):
+    questions=Ask.objects.all()
+    answers=  Ans.objects.all()
+    
+    context = {
+            'questions' : questions ,
+            'answers' : answers
+          }
+    return render(request,'Ans.html' ,context)
+
 
 def login_check(request):
     if request.user.is_superuser == 0 :  
@@ -58,9 +71,14 @@ def delete(request, id):
     questions.delete()
     return redirect('/myadmin')
 
-def ans(request):
-	questions = Ask.objects.all()
-	context = {
-		'questions' : questions
-	}
-	return render(request,'Ans.html' ,context)
+
+def answer(request):
+    rate = int(request.POST.get('rate'))
+    user_id=int(request.POST.get('user_id'))
+    user = User.objects.get(pk=user_id)
+    question_id= int(request.POST.get('question_id'))
+    question=Ask.objects.get(pk=question_id)
+    done=True
+    user_answer=Ans(user_id=user,done=done,rate=rate,Question_id=question)
+    user_answer.save()    
+    return redirect('ans')
