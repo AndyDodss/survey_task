@@ -12,8 +12,13 @@
     <link rel="stylesheet" href="{% static 'survey/css/style.css' %}">
 </head>
 <body>
-
-
+ <header>
+        <nav class="navbar navbar-light" style="background-color: #343a40;">
+            <div class="container">
+               <h4 style="color:#fff; ">Welcome {{request.user.username}}</h4>
+            </div>
+</nav>
+    </header>
 <div class="small_div">
 
 <div class="container">

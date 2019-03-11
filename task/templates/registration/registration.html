@@ -13,7 +13,7 @@
 </head>
 <body>
 
-   <form method="POST" action="{% url 'register' %}">
+   <form  class = "form" method="POST" action="{% url 'register' %}">
         {%  csrf_token %}
 
        {% if form.errors %}

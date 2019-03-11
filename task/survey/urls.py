@@ -11,6 +11,7 @@ urlpatterns = [
      path('answer',views.answer,name='answer'),
     path('ans', views.ans, name='ans' ),
 
+     path('test', views.test, name='test' ),
 
 
 ]

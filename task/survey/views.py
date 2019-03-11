@@ -14,6 +14,18 @@ def index(request):
     }
     return render(request,'index.html' , context)
 
+def test(request):
+    Ansewers = Ans.objects.all()
+    context = {
+        'answers': Ansewers
+    }
+    
+    return render(request ,'test.html',context)
+
+
+
+
+
 def ans(request):
     questions=Ask.objects.all()
     answers=  Ans.objects.all()
